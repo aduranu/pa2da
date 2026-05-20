@@ -34,6 +34,11 @@ target-version = "py311"
 [tool.hatch.build.targets.wheel]
 packages = ["src/ken"]
 
+[tool.uv.workspace]
+members = [
+    "pm_interview",
+]
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"

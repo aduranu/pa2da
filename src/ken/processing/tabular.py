@@ -43,27 +43,30 @@ def list_sheets(file_path: str) -> list[str]:
 def _read_file(file_path: str, fmt: str, ext: str, sheet_name: str | None) -> pd.DataFrame:
     """Try to read a tabular file, falling back across formats if parsing fails.
 
-    When the format is unknown (no recognized extension), try Excel first since
-    publisher supplement downloads often lack proper extensions.
+    Always tries all plausible formats. Order depends on detected format/extension.
     """
-    readers = []
+    excel_reader = ("excel", lambda: pd.read_excel(file_path, sheet_name=sheet_name or 0, header=None))
+    # Try multiple Excel engines for edge cases (xlrd for .xls, openpyxl for .xlsx)
+    excel_xlrd = ("excel-xlrd", lambda: pd.read_excel(file_path, sheet_name=sheet_name or 0, header=None, engine="xlrd"))
+    csv_reader = ("csv", lambda: pd.read_csv(file_path, header=None))
+    tsv_reader = ("tsv", lambda: pd.read_csv(file_path, header=None, sep="\t"))
+
     if fmt == "excel":
-        readers.append(("excel", lambda: pd.read_excel(file_path, sheet_name=sheet_name or 0, header=None)))
-        readers.append(("csv", lambda: pd.read_csv(file_path, header=None)))
+        readers = [excel_reader, excel_xlrd, csv_reader]
     elif ext == ".tsv":
-        readers.append(("tsv", lambda: pd.read_csv(file_path, header=None, sep="\t")))
+        readers = [tsv_reader, csv_reader]
     elif ext in (".csv", ".txt"):
-        readers.append(("csv", lambda: pd.read_csv(file_path, header=None)))
+        readers = [csv_reader, excel_reader]
     else:
-        # Unknown extension — try Excel first (common for publisher downloads)
-        readers.append(("excel", lambda: pd.read_excel(file_path, sheet_name=sheet_name or 0, header=None)))
-        readers.append(("csv", lambda: pd.read_csv(file_path, header=None)))
+        # Unknown extension — try everything, Excel first (publisher downloads often lack extensions)
+        readers = [excel_reader, excel_xlrd, csv_reader, tsv_reader]
 
     last_err = None
     for name, reader in readers:
         try:
             df = reader()
             if len(df) > 0:
+                logger.info("Successfully read %s as %s", file_path, name)
                 return df
         except Exception as e:
             logger.debug("Failed to read %s as %s: %s", file_path, name, e)

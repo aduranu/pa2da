@@ -80,10 +80,10 @@ def register_listeners(app: App, settings: Settings):
 
 
 def _run_graph(settings, client, channel, thread_ts, status_ts, user, link):
-    from ken.graph.builder import build_graph
+    from ken.graph.builder import get_graph
 
     logger.info("Starting graph for link=%s thread=%s", link, thread_ts)
-    graph = build_graph(settings)
+    graph = get_graph()
     config = {
         "configurable": {
             "thread_id": thread_ts,
@@ -109,10 +109,10 @@ def _run_graph(settings, client, channel, thread_ts, status_ts, user, link):
 
 def _resume_graph(settings, client, channel, thread_ts, value):
     from langgraph.types import Command
-    from ken.graph.builder import build_graph
+    from ken.graph.builder import get_graph
 
     logger.info("Resuming graph for thread=%s with value=%s", thread_ts, value)
-    graph = build_graph(settings)
+    graph = get_graph()
     config = {
         "configurable": {
             "thread_id": thread_ts,
