@@ -2,9 +2,9 @@ import logging
 
 from langchain_core.runnables import RunnableConfig
 
-from ken.graph.context import NodeContext
-from ken.graph.state import AgentState
-from ken.slack.blocks import error_message, preview_message
+from panda.graph.context import NodeContext
+from panda.graph.state import AgentState
+from panda.slack.blocks import error_message, preview_message
 
 logger = logging.getLogger(__name__)
 

@@ -1,5 +1,5 @@
 services:
-  ken:
+  panda:
     build: .
     env_file: .env
     volumes:

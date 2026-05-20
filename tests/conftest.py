@@ -8,7 +8,7 @@ import pytest
 
 @pytest.fixture
 def tmp_dir():
-    with tempfile.TemporaryDirectory(prefix="ken_test_") as d:
+    with tempfile.TemporaryDirectory(prefix="panda_test_") as d:
         yield d
 
 

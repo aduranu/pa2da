@@ -1,7 +1,7 @@
 import logging
 
-from ken.config import Settings
-from ken.slack.app import create_app
+from panda.config import Settings
+from panda.slack.app import create_app
 
 
 def main():
@@ -17,7 +17,7 @@ def main():
     from slack_bolt.adapter.socket_mode import SocketModeHandler
 
     handler = SocketModeHandler(app, settings.slack_app_token)
-    logging.getLogger(__name__).info("Starting KEN Data Agent in Socket Mode...")
+    logging.getLogger(__name__).info("Starting Panda Data Agent in Socket Mode...")
     handler.start()
 
 

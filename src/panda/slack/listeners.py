@@ -4,7 +4,7 @@ import threading
 
 from slack_bolt import App
 
-from ken.config import Settings
+from panda.config import Settings
 
 logger = logging.getLogger(__name__)
 
@@ -64,7 +64,7 @@ def register_listeners(app: App, settings: Settings):
             event.get("user", ""),
         )
 
-    @app.action(re.compile(r"^ken_choice_.*"))
+    @app.action(re.compile(r"^panda_choice_.*"))
     def handle_choice(ack, action, body, client):
         ack()
         channel = body["channel"]["id"]
@@ -80,7 +80,7 @@ def register_listeners(app: App, settings: Settings):
 
 
 def _run_graph(settings, client, channel, thread_ts, status_ts, user, link):
-    from ken.graph.builder import get_graph
+    from panda.graph.builder import get_graph
 
     logger.info("Starting graph for link=%s thread=%s", link, thread_ts)
     graph = get_graph()
@@ -109,7 +109,7 @@ def _run_graph(settings, client, channel, thread_ts, status_ts, user, link):
 
 def _resume_graph(settings, client, channel, thread_ts, value):
     from langgraph.types import Command
-    from ken.graph.builder import get_graph
+    from panda.graph.builder import get_graph
 
     logger.info("Resuming graph for thread=%s with value=%s", thread_ts, value)
     graph = get_graph()

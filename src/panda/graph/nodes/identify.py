@@ -2,16 +2,16 @@ import logging
 
 from langchain_core.runnables import RunnableConfig
 
-from ken.graph.context import NodeContext, build_choice
-from ken.graph.state import AgentState
-from ken.llm.prompts import LINK_SNIPER_SYSTEM, LINK_SNIPER_USER
+from panda.graph.context import NodeContext, build_choice
+from panda.graph.state import AgentState
+from panda.llm.prompts import LINK_SNIPER_SYSTEM, LINK_SNIPER_USER
 
 logger = logging.getLogger(__name__)
 
 
 def identify_node(state: AgentState, config: RunnableConfig) -> dict:
     """Use LLM to identify supplementary data links from the scraped markdown."""
-    from ken.llm.client import LLMClient
+    from panda.llm.client import LLMClient
 
     ctx = NodeContext(state, config)
 

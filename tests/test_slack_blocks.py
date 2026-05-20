@@ -1,4 +1,4 @@
-from ken.slack.blocks import choice_message, error_message, preview_message, status_message
+from panda.slack.blocks import choice_message, error_message, preview_message, status_message
 
 
 def test_status_message():

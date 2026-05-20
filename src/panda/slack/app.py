@@ -1,7 +1,7 @@
 from slack_bolt import App
 
-from ken.config import Settings
-from ken.slack.listeners import register_listeners
+from panda.config import Settings
+from panda.slack.listeners import register_listeners
 
 
 def create_app(settings: Settings) -> App:

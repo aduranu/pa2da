@@ -4,9 +4,9 @@ import os
 from langchain_core.runnables import RunnableConfig
 from langgraph.types import interrupt
 
-from ken.graph.context import NodeContext
-from ken.graph.state import AgentState
-from ken.slack.blocks import choice_message
+from panda.graph.context import NodeContext
+from panda.graph.state import AgentState
+from panda.slack.blocks import choice_message
 
 logger = logging.getLogger(__name__)
 

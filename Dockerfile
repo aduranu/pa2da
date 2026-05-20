@@ -9,4 +9,4 @@ COPY src/ src/
 
 ENV PYTHONUNBUFFERED=1
 
-CMD ["ken"]
+CMD ["panda"]

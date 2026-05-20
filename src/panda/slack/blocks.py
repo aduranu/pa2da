@@ -17,7 +17,7 @@ def choice_message(prompt: str, options: list[dict]) -> list[dict]:
         buttons.append({
             "type": "button",
             "text": {"type": "plain_text", "text": opt["label"][:75]},
-            "action_id": f"ken_choice_{opt['id']}",
+            "action_id": f"panda_choice_{opt['id']}",
             "value": opt["id"],
         })
 
@@ -25,7 +25,7 @@ def choice_message(prompt: str, options: list[dict]) -> list[dict]:
     buttons.append({
         "type": "button",
         "text": {"type": "plain_text", "text": "All"},
-        "action_id": "ken_choice_all",
+        "action_id": "panda_choice_all",
         "value": "all",
     })
 

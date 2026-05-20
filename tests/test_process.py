@@ -2,8 +2,8 @@ import os
 
 import pandas as pd
 
-from ken.processing.archive import extract_file, list_zip_contents
-from ken.processing.tabular import (
+from panda.processing.archive import extract_file, list_zip_contents
+from panda.processing.tabular import (
     generate_preview,
     list_sheets,
     read_and_clean,

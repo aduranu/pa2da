@@ -24,7 +24,7 @@ class LLMClient:
 
     def invoke_json(self, system: str, user: str) -> list | dict:
         """Send a prompt expecting JSON back. Retries once on parse failure."""
-        from ken.llm.prompts import JSON_RETRY
+        from panda.llm.prompts import JSON_RETRY
 
         text = self.invoke(system, user)
         try:

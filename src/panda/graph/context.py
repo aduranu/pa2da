@@ -4,7 +4,7 @@ import logging
 
 from langchain_core.runnables import RunnableConfig
 
-from ken.graph.state import AgentState
+from panda.graph.state import AgentState
 
 logger = logging.getLogger(__name__)
 

@@ -6,9 +6,9 @@ import tempfile
 import httpx
 from langchain_core.runnables import RunnableConfig
 
-from ken.graph.context import NodeContext, build_choice
-from ken.graph.state import AgentState
-from ken.processing.archive import extract_file, list_zip_contents
+from panda.graph.context import NodeContext, build_choice
+from panda.graph.state import AgentState
+from panda.processing.archive import extract_file, list_zip_contents
 
 logger = logging.getLogger(__name__)
 
@@ -48,7 +48,7 @@ def download_node(state: AgentState, config: RunnableConfig) -> dict:
     ctx.update_status(f":arrow_down: Downloading {labels}...")
 
     downloaded = []
-    tmp_dir = tempfile.mkdtemp(prefix="ken_")
+    tmp_dir = tempfile.mkdtemp(prefix="panda_")
 
     for link in links:
         url = link["url"]

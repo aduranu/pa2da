@@ -4,10 +4,10 @@ import tempfile
 
 from langchain_core.runnables import RunnableConfig
 
-from ken.graph.context import NodeContext, build_choice
-from ken.graph.state import AgentState
-from ken.processing.archive import extract_file
-from ken.processing.tabular import generate_preview, list_sheets, read_and_clean, save_clean
+from panda.graph.context import NodeContext, build_choice
+from panda.graph.state import AgentState
+from panda.processing.archive import extract_file
+from panda.processing.tabular import generate_preview, list_sheets, read_and_clean, save_clean
 
 logger = logging.getLogger(__name__)
 
@@ -38,7 +38,7 @@ def process_node(state: AgentState, config: RunnableConfig) -> dict:
 
         # Extract from ZIP if needed
         if file_path.lower().endswith(".zip") and user_choice and user_choice != "all":
-            tmp = tempfile.mkdtemp(prefix="ken_extract_")
+            tmp = tempfile.mkdtemp(prefix="panda_extract_")
             file_path = extract_file(file_path, user_choice, tmp)
             original_name = os.path.basename(user_choice)
 

@@ -4,8 +4,8 @@ import re
 import httpx
 from langchain_core.runnables import RunnableConfig
 
-from ken.graph.context import NodeContext
-from ken.graph.state import AgentState
+from panda.graph.context import NodeContext
+from panda.graph.state import AgentState
 
 logger = logging.getLogger(__name__)
 
@@ -36,8 +36,8 @@ def scrape_node(state: AgentState, config: RunnableConfig) -> dict:
     ctx.update_status(":mag: Scraping publisher page...")
 
     # Try Firecrawl first, fall back to Jina
-    from ken.scraper.firecrawl import FirecrawlScraper
-    from ken.scraper.jina import JinaScraper
+    from panda.scraper.firecrawl import FirecrawlScraper
+    from panda.scraper.jina import JinaScraper
 
     try:
         markdown = FirecrawlScraper(api_key=ctx.settings.firecrawl_api_key).scrape(page_url)

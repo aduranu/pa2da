@@ -1,5 +1,5 @@
 [project]
-name = "ken-data-agent"
+name = "panda-data-agent"
 version = "0.1.0"
 description = "Slack-native agent for extracting supplementary data from scientific papers"
 requires-python = ">=3.11"
@@ -25,14 +25,14 @@ dev = [
 ]
 
 [project.scripts]
-ken = "ken.main:main"
+panda = "panda.main:main"
 
 [tool.ruff]
 line-length = 100
 target-version = "py311"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/ken"]
+packages = ["src/panda"]
 
 [tool.uv.workspace]
 members = [
